@@ -1,0 +1,47 @@
+def who_goes_free(n,k): # make a function for each iteration
+    lst = []
+    #create a list of alphabet according to given n
+    for i in range(65, 65 + n):
+       lst.append(chr(i))
+    c=k
+    #A be the person who begins the process.
+    while(len(lst)>1):
+        
+        item = lst[(c)%len(lst)]
+        inc = (c)%len(lst)
+        
+        #On each iteration, x will kill kth person on the left
+        
+        print(lst[inc-(k%len(lst))] + " kills " +lst[inc])
+        #x begins with A and is reset to be the person on the left of the person killed each time.
+
+        lst.pop(inc)
+        c+=k
+        c = c%len(lst)
+        
+    
+#/print(lst[0] + " ")    
+        
+    return lst[0]
+    
+"""Take a input n, k from user 
+  n be the number of persons standing in a circle facing the centre, 
+  k be a skip number """  
+  
+n = int(input("enter value of n: "))
+k = int(input("enter value of k: "))
+
+
+if n <= 0 or k < 0:
+    print("n should be more then 1 and k should be more than 0")
+   # (k-1)th person will be killed
+ 
+elif k==0 or k==n or k%n == 0:
+    p = who_goes_free(n,k%n)
+    print(p + " Kills "+p)
+else:
+    p = who_goes_free(n,k%n)
+    print(p + " is left alone " )
+
+    
+    
